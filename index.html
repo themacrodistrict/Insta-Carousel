@@ -347,19 +347,13 @@
           <label for="imageUpload">Hintergrund</label>
           <input id="imageUpload" type="file" accept="image/*,video/*,.mp4,.mov,.webm,.m4v">
         </div>
-        <div class="field-inline">
-          <label class="field" for="format">
-            <span>Format</span>
-            <select id="format">
-              <option value="square">1080 x 1080</option>
-              <option value="portrait">1080 x 1350</option>
-            </select>
-          </label>
-          <label class="field" for="fileName">
-            <span>Dateiname</span>
-            <input id="fileName" type="text" value="tdm-tiramisu-cover">
-          </label>
-        </div>
+        <label class="field" for="format">
+          <span>Format</span>
+          <select id="format">
+            <option value="square">1080 x 1080</option>
+            <option value="portrait">1080 x 1350</option>
+          </select>
+        </label>
         <div class="field">
           <span>Zoom</span>
           <div class="range-row">
@@ -496,7 +490,6 @@
 
     const defaultState = {
       format: "square",
-      fileName: "tdm-tiramisu-cover",
       label: "HIGH PROTEIN",
       recipeTitle: "TIRAMISU",
       calories: "540",
@@ -518,7 +511,6 @@
     const fields = {
       imageUpload: document.getElementById("imageUpload"),
       format: document.getElementById("format"),
-      fileName: document.getElementById("fileName"),
       label: document.getElementById("label"),
       recipeTitle: document.getElementById("recipeTitle"),
       calories: document.getElementById("calories"),
@@ -736,79 +728,142 @@
     }
 
     function drawLineIcon(type, x, y, size, color) {
-      const path = (d) => new Path2D(d);
-
       ctx.save();
       ctx.translate(x, y);
-      ctx.scale(size / 24, size / 24);
-      ctx.translate(-12, -12);
+      ctx.scale(size / 44, size / 44);
       ctx.strokeStyle = color;
-      ctx.fillStyle = "rgba(232,191,115,0.08)";
-      ctx.lineWidth = 1.85;
+      ctx.fillStyle = "rgba(232,191,115,0.075)";
+      ctx.lineWidth = 2.45;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      ctx.shadowColor = "rgba(232,191,115,0.18)";
-      ctx.shadowBlur = 2.5;
+      ctx.shadowColor = "rgba(232,191,115,0.22)";
+      ctx.shadowBlur = 2.8;
+
+      const drawLayer = (draw, fill = false) => {
+        ctx.save();
+        ctx.globalAlpha = 0.18;
+        ctx.lineWidth = 4.1;
+        draw();
+        ctx.stroke();
+        ctx.restore();
+
+        draw();
+        if (fill) ctx.fill();
+        ctx.stroke();
+      };
+
+      const drawLeaf = (x1, y1, x2, y2, cx1, cy1, cx2, cy2) => {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.bezierCurveTo(cx1, cy1, cx2, cy2, x2, y2);
+        ctx.bezierCurveTo(cx2 * 0.72, cy2 + 7, cx1 * 0.72, cy1 + 7, x1, y1);
+        ctx.closePath();
+      };
 
       if (type === "flame") {
-        const outer = path("M12 22C8.1 20.5 5.6 17.2 5.6 13.6c0-2.7 1.3-5.2 3.9-7.3C10.9 5.1 11.8 3.7 12 2c2.8 2 4.3 4.6 4.3 7.4 1.2-.8 2-2.1 2.2-3.6 2.4 2.3 3.4 5.3 2.8 8.2-.7 3.5-3.4 6.6-7.2 7.8-.7.2-1.4.3-2.1.2Z");
-        const inner = path("M12.2 20c-1.8-.9-2.9-2.4-2.9-4.2 0-1.8 1-3.2 2.9-4.5-.1 1.5.5 2.6 1.7 3.5.8-.8 1.2-1.8 1.2-3 1.4 1.1 2.2 2.6 2.1 4.2-.1 1.9-1.4 3.5-3.4 4.1");
-        ctx.fill(outer);
-        ctx.stroke(outer);
-        ctx.stroke(inner);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(-1, 19);
+          ctx.bezierCurveTo(-13, 16, -18, 7, -14, -3);
+          ctx.bezierCurveTo(-12, -9, -7, -13, -4, -19);
+          ctx.bezierCurveTo(-3, -10, 6, -7, 5, -21);
+          ctx.bezierCurveTo(15, -16, 19, -7, 16, 1);
+          ctx.bezierCurveTo(20, -2, 22, -7, 21, -12);
+          ctx.bezierCurveTo(29, -3, 27, 10, 17, 18);
+          ctx.bezierCurveTo(12, 22, 4, 22, -1, 19);
+          ctx.closePath();
+        }, true);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(0, 17);
+          ctx.bezierCurveTo(-6, 10, -3, 3, 4, -3);
+          ctx.bezierCurveTo(4, 5, 13, 8, 8, 18);
+        });
       }
 
       if (type === "arm") {
-        ctx.save();
-        ctx.translate(12, 12);
-        ctx.rotate(-0.72);
-        ctx.translate(-12, -12);
-        ctx.beginPath();
-        ctx.moveTo(7.4, 12);
-        ctx.lineTo(16.6, 12);
-        ctx.stroke();
-        [
-          [3.2, 7.5, 3.4, 9],
-          [6.8, 9, 2.8, 6],
-          [14.4, 9, 2.8, 6],
-          [17.4, 7.5, 3.4, 9]
-        ].forEach(([rx, ry, rw, rh]) => {
-          roundRectPath(rx, ry, rw, rh, 1.2);
-          ctx.fill();
-          ctx.stroke();
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(-19, 13);
+          ctx.bezierCurveTo(-16, 5, -10, 0, -2, -2);
+          ctx.lineTo(4, -16);
+          ctx.bezierCurveTo(6, -21, 13, -21, 15, -16);
+          ctx.bezierCurveTo(17, -11, 14, -5, 10, -2);
+          ctx.bezierCurveTo(14, -4, 20, -2, 22, 2);
+          ctx.bezierCurveTo(24, 6, 20, 9, 16, 7);
+          ctx.lineTo(9, 5);
+          ctx.bezierCurveTo(12, 11, 8, 17, 2, 20);
+          ctx.bezierCurveTo(-7, 23, -16, 20, -19, 13);
+          ctx.closePath();
+        }, true);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(-5, -2);
+          ctx.bezierCurveTo(-12, -7, -9, -18, -1, -21);
+          ctx.moveTo(4, -15);
+          ctx.bezierCurveTo(8, -12, 9, -7, 6, -3);
+          ctx.moveTo(-1, 2);
+          ctx.bezierCurveTo(3, 7, 10, 9, 16, 7);
+          ctx.moveTo(-13, 12);
+          ctx.bezierCurveTo(-8, 16, -2, 16, 3, 12);
         });
-        ctx.restore();
       }
 
       if (type === "wheat") {
-        const stem = path("M12 21V4");
-        const leaves = [
-          "M12 7.2C9 4.2 6.6 4 4.8 6.2 6.9 8.2 9.2 8.4 12 7.2Z",
-          "M12 10.4C15.1 7.2 17.6 7.1 19.3 9.2 17.2 11.4 14.9 11.6 12 10.4Z",
-          "M12 13.6C8.9 10.5 6.5 10.3 4.7 12.5 6.8 14.6 9.2 14.8 12 13.6Z",
-          "M12 16.8C15.1 13.6 17.5 13.5 19.2 15.6 17.1 17.8 14.8 18 12 16.8Z"
-        ].map(path);
-        leaves.forEach((leaf) => {
-          ctx.fill(leaf);
-          ctx.stroke(leaf);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(0, 20);
+          ctx.bezierCurveTo(0, 11, 0, 1, 0, -20);
         });
-        ctx.stroke(stem);
+        [
+          [-1, -14, -13, -21, -12, -12],
+          [1, -9, 14, -17, 13, -7],
+          [-1, -4, -15, -11, -13, -1],
+          [1, 1, 16, -6, 14, 5],
+          [-1, 6, -15, 0, -12, 10],
+          [1, 10, 14, 4, 12, 15]
+        ].forEach(([x1, y1, x2, y2, cy]) => {
+          drawLayer(() => drawLeaf(x1, y1, x2, y2, (x1 + x2) / 2, cy, x2, y2), true);
+        });
       }
 
       if (type === "drop") {
-        const outer = path("M12 3C16.6 8.1 18.8 11.7 18.8 15.4 18.8 19.3 15.8 22 12 22s-6.8-2.7-6.8-6.6C5.2 11.7 7.4 8.1 12 3Z");
-        const shine = path("M9 16.1c.8 1.6 2.8 2.4 4.7 1.6");
-        ctx.fill(outer);
-        ctx.stroke(outer);
-        ctx.stroke(shine);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(0, -20);
+          ctx.bezierCurveTo(13, -5, 18, 5, 14, 13);
+          ctx.bezierCurveTo(10, 22, -3, 24, -11, 17);
+          ctx.bezierCurveTo(-20, 9, -13, -5, 0, -20);
+          ctx.closePath();
+        }, true);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(-8, 10);
+          ctx.bezierCurveTo(-5, 16, 4, 18, 9, 11);
+        });
       }
 
       if (type === "cube") {
-        const shell = path("M12 3 20 7.6v8.8L12 21l-8-4.6V7.6L12 3Z");
-        const folds = path("M4 7.6 12 12.2l8-4.6M12 12.2V21M8 5.3l8 4.6");
-        ctx.fill(shell);
-        ctx.stroke(shell);
-        ctx.stroke(folds);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(0, -19);
+          ctx.lineTo(17, -9);
+          ctx.lineTo(17, 10);
+          ctx.lineTo(0, 20);
+          ctx.lineTo(-17, 10);
+          ctx.lineTo(-17, -9);
+          ctx.closePath();
+        }, true);
+        drawLayer(() => {
+          ctx.beginPath();
+          ctx.moveTo(-17, -9);
+          ctx.lineTo(0, 1);
+          ctx.lineTo(17, -9);
+          ctx.moveTo(0, 1);
+          ctx.lineTo(0, 20);
+          ctx.moveTo(-8, -14);
+          ctx.lineTo(9, -4);
+        });
       }
 
       ctx.restore();
@@ -896,7 +951,7 @@
       ctx.stroke();
 
       currentY += 63 * scale;
-      drawLineIcon("flame", x + 82 * scale, currentY, 39 * scale, gold);
+      drawLineIcon("flame", x + 82 * scale, currentY, 42 * scale, gold);
       ctx.fillStyle = white;
       ctx.font = `800 ${Math.round(55 * scale)}px Inter, Arial, sans-serif`;
       ctx.textAlign = "left";
@@ -906,7 +961,7 @@
       ctx.fillText("CALORIES", x + 270 * scale, currentY + 2 * scale);
 
       currentY += 72 * scale;
-      drawLineIcon("arm", x + 82 * scale, currentY, 42 * scale, gold);
+      drawLineIcon("arm", x + 82 * scale, currentY, 47 * scale, gold);
       ctx.fillStyle = white;
       ctx.font = `800 ${Math.round(51 * scale)}px Inter, Arial, sans-serif`;
       ctx.fillText(state.protein, x + 135 * scale, currentY);
@@ -931,7 +986,7 @@
 
       ctx.textAlign = "center";
       columns.forEach((macro) => {
-        drawLineIcon(macro.icon, macro.x, macroY - 39 * scale, 26 * scale, gold);
+        drawLineIcon(macro.icon, macro.x, macroY - 39 * scale, 31 * scale, gold);
         ctx.fillStyle = white;
         ctx.font = `800 ${Math.round(34 * scale)}px Inter, Arial, sans-serif`;
         ctx.fillText(macro.value, macro.x, macroY + 5 * scale);
@@ -1005,9 +1060,11 @@
     }
 
     function cleanFileName(extension) {
-      const cleanName = (state.fileName || "tdm-carousel-cover")
+      const cleanName = (state.recipeTitle || "tdm-carousel-cover")
         .trim()
         .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9-]+/g, "-")
         .replace(/^-+|-+$/g, "") || "tdm-carousel-cover";
       return `${cleanName}.${extension}`;
