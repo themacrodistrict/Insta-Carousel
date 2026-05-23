@@ -97,103 +97,864 @@
     }
 
     .group {
-      display: grid;<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Macro District Carousel Studio</title>
-  <style>
-    :root {
-      --bg: #12100d;
-      --panel: #1f1c17;
-      --panel-2: #29241d;
-      --text: #fff9ef;
-      --muted: #b9afa1;
-      --line: #3d3529;
-      --gold: #e8bf73;
-      --gold-soft: #ffe0a6;
-      --danger: #e57373;
-      --field: #15130f;
-      --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(232, 191, 115, 0.14), transparent 30%),
-        linear-gradient(135deg, #12100d 0%, #21190f 48%, #151515 100%);
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-    }
-
-    .app {
       display: grid;
-      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
-      min-height: 100vh;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
     }
 
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      min-height: 100vh;
-      padding: 24px;
-      overflow: auto;
-      background: rgba(18, 16, 13, 0.76);
-      border-right: 1px solid rgba(232, 191, 115, 0.18);
-      backdrop-filter: blur(18px);
-    }
-
-    .brand {
+    .group-title {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding-bottom: 6px;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      color: var(--gold-soft);
-      font-family: Georgia, serif;
-      font-size: 17px;
-      letter-spacing: 0;
-    }
-
-    h1 {
+      gap: 12px;
       margin: 0;
-      font-size: 20px;
-      line-height: 1.12;
-      letter-spacing: 0;
+      color: var(--gold-soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
     }
 
-    .subtitle {
-      margin: 3px 0 0;
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field span,
+    .field label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .field-inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      min-height: 42px;
+      padding: 10px 11px;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: var(--field);
+      outline: none;
+    }
+
+    input[type="file"] {
+      width: 100%;
       color: var(--muted);
       font-size: 13px;
     }
 
-    .group {
+    input:focus,
+    select:focus {
+      border-color: rgba(232, 191, 115, 0.7);
+      box-shadow: 0 0 0 3px rgba(232, 191, 115, 0.13);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+    }
+
+    .range-row {
       display: grid;
+      grid-template-columns: 1fr 54px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .readout {
+      padding: 7px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--gold-soft);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      position: sticky;
+      bottom: -1px;
+      padding-top: 8px;
+      background: linear-gradient(180deg, rgba(18, 16, 13, 0), rgba(18, 16, 13, 0.96) 32%);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #16120d;
+      background: var(--gold);
+      font-weight: 800;
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .stage-wrap {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      min-height: 100vh;
+      padding: 22px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 2px 18px;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .canvas-shell {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.035) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.035) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.035) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.035) 75%),
+        #171512;
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: min(78vh, 100%);
+      height: auto;
+      max-height: calc(100vh - 110px);
+      background: #0f0e0c;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42);
+    }
+
+    .tiny {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 920px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(232, 191, 115, 0.18);
+      }
+
+      .stage-wrap {
+        min-height: auto;
+        padding: 16px;
+      }
+
+      canvas {
+        width: min(100%, 720px);
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .controls {
+        padding: 16px;
+      }
+
+      .field-inline,
+      .triple,
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="controls" aria-label="Carousel Einstellungen">
+      <div class="brand">
+        <div>
+          <h1>The Macro District Studio</h1>
+          <p class="subtitle">Instagram Carousel Cover Generator</p>
+        </div>
+        <div class="brand-mark" aria-label="TDM">TDM</div>
+      </div>
+
+      <section class="group">
+        <p class="group-title">Bild</p>
+        <div class="field">
+          <label for="imageUpload">Hintergrund</label>
+          <input id="imageUpload" type="file" accept="image/*">
+        </div>
+        <div class="field-inline">
+          <label class="field" for="format">
+            <span>Format</span>
+            <select id="format">
+              <option value="square">1080 x 1080</option>
+              <option value="portrait">1080 x 1350</option>
+            </select>
+          </label>
+          <label class="field" for="fileName">
+            <span>Dateiname</span>
+            <input id="fileName" type="text" value="tdm-tiramisu-cover">
+          </label>
+        </div>
+        <div class="field">
+          <span>Zoom</span>
+          <div class="range-row">
+            <input id="imageZoom" type="range" min="1" max="3" step="0.01" value="1.16">
+            <output class="readout" id="imageZoomOut">116%</output>
+          </div>
+        </div>
+        <div class="field-inline">
+          <div class="field">
+            <span>X</span>
+            <div class="range-row">
+              <input id="imageX" type="range" min="-100" max="100" step="1" value="18">
+              <output class="readout" id="imageXOut">18</output>
+            </div>
+          </div>
+          <div class="field">
+            <span>Y</span>
+            <div class="range-row">
+              <input id="imageY" type="range" min="-100" max="100" step="1" value="0">
+              <output class="readout" id="imageYOut">0</output>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="group">
+        <p class="group-title">Rezept</p>
+        <div class="field">
+          <label for="label">Kategorie</label>
+          <input id="label" type="text" value="HIGH PROTEIN">
+        </div>
+        <div class="field">
+          <label for="recipeTitle">Titel</label>
+          <input id="recipeTitle" type="text" value="TIRAMISU">
+        </div>
+        <div class="field-inline">
+          <label class="field" for="calories">
+            <span>Kalorien</span>
+            <input id="calories" type="text" value="540">
+          </label>
+          <label class="field" for="protein">
+            <span>Protein</span>
+            <input id="protein" type="text" value="48g">
+          </label>
+        </div>
+        <div class="triple">
+          <label class="field" for="carbs">
+            <span>Carbs</span>
+            <input id="carbs" type="text" value="52g">
+          </label>
+          <label class="field" for="fat">
+            <span>Fat</span>
+            <input id="fat" type="text" value="14g">
+          </label>
+          <label class="field" for="fiber">
+            <span>Fiber</span>
+            <input id="fiber" type="text" value="8g">
+          </label>
+        </div>
+        <div class="field">
+          <label for="footer">Footer</label>
+          <input id="footer" type="text" value="PER SERVING">
+        </div>
+      </section>
+
+      <section class="group">
+        <p class="group-title">Overlay</p>
+        <div class="field">
+          <span>Groesse</span>
+          <div class="range-row">
+            <input id="overlayScale" type="range" min="72" max="135" step="1" value="100">
+            <output class="readout" id="overlayScaleOut">100%</output>
+          </div>
+        </div>
+        <div class="field-inline">
+          <div class="field">
+            <span>X</span>
+            <div class="range-row">
+              <input id="overlayX" type="range" min="0" max="100" step="1" value="4">
+              <output class="readout" id="overlayXOut">4</output>
+            </div>
+          </div>
+          <div class="field">
+            <span>Y</span>
+            <div class="range-row">
+              <input id="overlayY" type="range" min="0" max="100" step="1" value="41">
+              <output class="readout" id="overlayYOut">41</output>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <span>Transparenz</span>
+          <div class="range-row">
+            <input id="overlayOpacity" type="range" min="45" max="95" step="1" value="72">
+            <output class="readout" id="overlayOpacityOut">72%</output>
+          </div>
+        </div>
+        <div class="field">
+          <span>Blur</span>
+          <div class="range-row">
+            <input id="overlayBlur" type="range" min="0" max="28" step="1" value="16">
+            <output class="readout" id="overlayBlurOut">16</output>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn secondary" id="resetBtn" type="button" title="Werte zuruecksetzen">
+          Reset
+        </button>
+        <button class="btn" id="downloadBtn" type="button" title="PNG exportieren">
+          PNG
+        </button>
+      </div>
+    </aside>
+
+    <section class="stage-wrap" aria-label="Vorschau">
+      <div class="topbar">
+        <div>
+          <strong>Live Preview</strong>
+          <div class="status" id="status">Bereit fuer Upload, Crop und Export.</div>
+        </div>
+        <div class="tiny" id="sizeInfo">1080 x 1080 px</div>
+      </div>
+      <div class="canvas-shell">
+        <canvas id="poster" width="1080" height="1080" aria-label="Instagram Carousel Vorschau"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("poster");
+    const ctx = canvas.getContext("2d");
+
+    const defaultState = {
+      format: "square",
+      fileName: "tdm-tiramisu-cover",
+      label: "HIGH PROTEIN",
+      recipeTitle: "TIRAMISU",
+      calories: "540",
+      protein: "48g",
+      carbs: "52g",
+      fat: "14g",
+      fiber: "8g",
+      footer: "PER SERVING",
+      imageZoom: 1.16,
+      imageX: 18,
+      imageY: 0,
+      overlayScale: 100,
+      overlayX: 4,
+      overlayY: 41,
+      overlayOpacity: 72,
+      overlayBlur: 16
+    };
+
+    const fields = {
+      imageUpload: document.getElementById("imageUpload"),
+      format: document.getElementById("format"),
+      fileName: document.getElementById("fileName"),
+      label: document.getElementById("label"),
+      recipeTitle: document.getElementById("recipeTitle"),
+      calories: document.getElementById("calories"),
+      protein: document.getElementById("protein"),
+      carbs: document.getElementById("carbs"),
+      fat: document.getElementById("fat"),
+      fiber: document.getElementById("fiber"),
+      footer: document.getElementById("footer"),
+      imageZoom: document.getElementById("imageZoom"),
+      imageX: document.getElementById("imageX"),
+      imageY: document.getElementById("imageY"),
+      overlayScale: document.getElementById("overlayScale"),
+      overlayX: document.getElementById("overlayX"),
+      overlayY: document.getElementById("overlayY"),
+      overlayOpacity: document.getElementById("overlayOpacity"),
+      overlayBlur: document.getElementById("overlayBlur")
+    };
+
+    const readouts = {
+      imageZoom: document.getElementById("imageZoomOut"),
+      imageX: document.getElementById("imageXOut"),
+      imageY: document.getElementById("imageYOut"),
+      overlayScale: document.getElementById("overlayScaleOut"),
+      overlayX: document.getElementById("overlayXOut"),
+      overlayY: document.getElementById("overlayYOut"),
+      overlayOpacity: document.getElementById("overlayOpacityOut"),
+      overlayBlur: document.getElementById("overlayBlurOut")
+    };
+
+    const statusEl = document.getElementById("status");
+    const sizeInfo = document.getElementById("sizeInfo");
+    const resetBtn = document.getElementById("resetBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    let image = null;
+    let state = { ...defaultState };
+
+    function syncStateFromInputs() {
+      Object.keys(defaultState).forEach((key) => {
+        const field = fields[key];
+        if (!field) return;
+        if (field.type === "range") {
+          state[key] = Number(field.value);
+        } else {
+          state[key] = field.value;
+        }
+      });
+      updateReadouts();
+    }
+
+    function updateInputsFromState() {
+      Object.keys(defaultState).forEach((key) => {
+        const field = fields[key];
+        if (field) field.value = state[key];
+      });
+      updateReadouts();
+    }
+
+    function updateReadouts() {
+      readouts.imageZoom.textContent = `${Math.round(state.imageZoom * 100)}%`;
+      readouts.imageX.textContent = state.imageX;
+      readouts.imageY.textContent = state.imageY;
+      readouts.overlayScale.textContent = `${state.overlayScale}%`;
+      readouts.overlayX.textContent = state.overlayX;
+      readouts.overlayY.textContent = state.overlayY;
+      readouts.overlayOpacity.textContent = `${state.overlayOpacity}%`;
+      readouts.overlayBlur.textContent = state.overlayBlur;
+    }
+
+    function fitText(text, maxWidth, baseSize, minSize, fontFace, weight = "700") {
+      let size = baseSize;
+      ctx.font = `${weight} ${size}px ${fontFace}`;
+      while (ctx.measureText(text).width > maxWidth && size > minSize) {
+        size -= 2;
+        ctx.font = `${weight} ${size}px ${fontFace}`;
+      }
+      return size;
+    }
+
+    function roundRectPath(x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + width, y, r);
+      ctx.closePath();
+    }
+
+    function drawPlaceholder() {
+      const width = canvas.width;
+      const height = canvas.height;
+      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, "#1c1711");
+      gradient.addColorStop(0.46, "#3a2717");
+      gradient.addColorStop(1, "#0f0f0f");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.save();
+      ctx.translate(width * 0.66, height * 0.43);
+      ctx.rotate(-0.05);
+      ctx.fillStyle = "#eee4d0";
+      ctx.beginPath();
+      ctx.ellipse(0, 0, width * 0.32, height * 0.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#7a4a24";
+      for (let i = 0; i < 180; i += 1) {
+        const x = (Math.random() - 0.5) * width * 0.58;
+        const y = (Math.random() - 0.5) * height * 0.32;
+        ctx.globalAlpha = 0.32;
+        ctx.fillRect(x, y, Math.random() * 12 + 3, Math.random() * 5 + 1);
+      }
+      ctx.restore();
+
+      ctx.globalAlpha = 0.36;
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, width, height);
+      ctx.globalAlpha = 1;
+    }
+
+    function drawImageCover() {
+      const width = canvas.width;
+      const height = canvas.height;
+
+      if (!image) {
+        drawPlaceholder();
+        return;
+      }
+
+      const coverScale = Math.max(width / image.width, height / image.height) * state.imageZoom;
+      const imgWidth = image.width * coverScale;
+      const imgHeight = image.height * coverScale;
+      const x = (width - imgWidth) / 2 + (state.imageX / 100) * width * 0.5;
+      const y = (height - imgHeight) / 2 + (state.imageY / 100) * height * 0.5;
+
+      ctx.drawImage(image, x, y, imgWidth, imgHeight);
+
+      const vignette = ctx.createRadialGradient(width * 0.6, height * 0.43, width * 0.16, width * 0.5, height * 0.48, width * 0.77);
+      vignette.addColorStop(0, "rgba(0,0,0,0)");
+      vignette.addColorStop(1, "rgba(0,0,0,0.52)");
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    function drawLineIcon(type, x, y, size, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size / 40, size / 40);
+      ctx.strokeStyle = color;
+      ctx.fillStyle = "transparent";
+      ctx.lineWidth = 3;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      if (type === "flame") {
+        ctx.beginPath();
+        ctx.moveTo(0, 18);
+        ctx.bezierCurveTo(-15, 10, -12, -8, -1, -19);
+        ctx.bezierCurveTo(-4, -6, 6, -2, 5, -18);
+        ctx.bezierCurveTo(18, -7, 18, 11, 5, 19);
+        ctx.bezierCurveTo(0, 22, -6, 22, -10, 18);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(-2, 18);
+        ctx.bezierCurveTo(-7, 12, -4, 4, 3, -4);
+        ctx.bezierCurveTo(11, 4, 9, 14, 2, 19);
+        ctx.stroke();
+      }
+
+      if (type === "arm") {
+        ctx.beginPath();
+        ctx.moveTo(-17, 13);
+        ctx.bezierCurveTo(-12, 2, -6, -5, 2, -8);
+        ctx.lineTo(7, -19);
+        ctx.bezierCurveTo(12, -16, 14, -9, 10, -3);
+        ctx.lineTo(5, 4);
+        ctx.lineTo(17, 4);
+        ctx.bezierCurveTo(22, 5, 23, 12, 18, 15);
+        ctx.lineTo(3, 20);
+        ctx.bezierCurveTo(-7, 22, -13, 20, -17, 13);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(-5, -7);
+        ctx.bezierCurveTo(-13, -10, -13, -18, -6, -21);
+        ctx.stroke();
+      }
+
+      if (type === "wheat") {
+        ctx.beginPath();
+        ctx.moveTo(0, 18);
+        ctx.lineTo(0, -18);
+        ctx.stroke();
+        [-12, -4, 4].forEach((yy) => {
+          ctx.beginPath();
+          ctx.moveTo(0, yy);
+          ctx.bezierCurveTo(-12, yy - 7, -18, yy - 2, -10, yy + 7);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(0, yy + 4);
+          ctx.bezierCurveTo(12, yy - 3, 18, yy + 2, 10, yy + 11);
+          ctx.stroke();
+        });
+      }
+
+      if (type === "drop") {
+        ctx.beginPath();
+        ctx.moveTo(0, -19);
+        ctx.bezierCurveTo(13, -4, 17, 6, 10, 15);
+        ctx.bezierCurveTo(4, 23, -8, 21, -13, 13);
+        ctx.bezierCurveTo(-18, 4, -10, -8, 0, -19);
+        ctx.stroke();
+      }
+
+      if (type === "cube") {
+        ctx.beginPath();
+        ctx.moveTo(0, -18);
+        ctx.lineTo(16, -9);
+        ctx.lineTo(16, 9);
+        ctx.lineTo(0, 18);
+        ctx.lineTo(-16, 9);
+        ctx.lineTo(-16, -9);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(-16, -9);
+        ctx.lineTo(0, 0);
+        ctx.lineTo(16, -9);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, 18);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+
+    function drawLogo(cx, cy, radius, scale) {
+      ctx.save();
+      ctx.strokeStyle = "#e8bf73";
+      ctx.lineWidth = 2.2 * scale;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fillStyle = "#e8bf73";
+      ctx.font = `${Math.round(20 * scale)}px Georgia, serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("TDM", cx, cy + 1 * scale);
+      ctx.restore();
+    }
+
+    function drawOverlay() {
+      const scale = state.overlayScale / 100;
+      const baseW = 438;
+      const baseH = 595;
+      const panelW = baseW * scale;
+      const panelH = baseH * scale;
+      const width = canvas.width;
+      const height = canvas.height;
+      const maxX = width - panelW - 40 * scale;
+      const maxY = height - panelH - 40 * scale;
+      const x = 40 * scale + (state.overlayX / 100) * Math.max(0, maxX - 40 * scale);
+      const y = 32 * scale + (state.overlayY / 100) * Math.max(0, maxY - 32 * scale);
+      const gold = "#e8bf73";
+      const white = "#fffaf3";
+      const muted = "#f4cf8c";
+
+      ctx.save();
+      ctx.shadowColor = "rgba(0,0,0,0.35)";
+      ctx.shadowBlur = 20 * scale;
+      ctx.shadowOffsetY = 8 * scale;
+      roundRectPath(x, y, panelW, panelH, 19 * scale);
+      ctx.fillStyle = `rgba(22, 21, 18, ${state.overlayOpacity / 100})`;
+      ctx.fill();
+
+      ctx.save();
+      roundRectPath(x, y, panelW, panelH, 19 * scale);
+      ctx.clip();
+      ctx.globalAlpha = 0.45;
+      ctx.filter = `blur(${state.overlayBlur}px)`;
+      ctx.drawImage(canvas, x - panelW * 0.03, y - panelH * 0.03, panelW * 1.06, panelH * 1.06, x, y, panelW, panelH);
+      ctx.restore();
+
+      roundRectPath(x, y, panelW, panelH, 19 * scale);
+      ctx.strokeStyle = "rgba(255,255,255,0.86)";
+      ctx.lineWidth = 1.3 * scale;
+      ctx.stroke();
+
+      ctx.shadowColor = "transparent";
+      const cx = x + panelW / 2;
+      let currentY = y + 52 * scale;
+      drawLogo(cx, currentY, 27 * scale, scale);
+
+      currentY += 61 * scale;
+      ctx.fillStyle = muted;
+      ctx.font = `${Math.round(18 * scale)}px Inter, Arial, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(state.label.toUpperCase(), cx, currentY);
+
+      currentY += 69 * scale;
+      const title = state.recipeTitle.toUpperCase();
+      const titleSize = fitText(title, panelW - 96 * scale, 54 * scale, 28 * scale, "Impact, 'Arial Narrow', Arial, sans-serif", "400");
+      ctx.font = `400 ${titleSize}px Impact, "Arial Narrow", Arial, sans-serif`;
+      ctx.fillStyle = white;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(title, cx, currentY);
+
+      currentY += 64 * scale;
+      ctx.strokeStyle = "rgba(232,191,115,0.72)";
+      ctx.lineWidth = 1.1 * scale;
+      ctx.beginPath();
+      ctx.moveTo(x + 42 * scale, currentY);
+      ctx.lineTo(x + panelW - 42 * scale, currentY);
+      ctx.stroke();
+
+      currentY += 63 * scale;
+      drawLineIcon("flame", x + 82 * scale, currentY, 39 * scale, gold);
+      ctx.fillStyle = white;
+      ctx.font = `800 ${Math.round(55 * scale)}px Inter, Arial, sans-serif`;
+      ctx.textAlign = "left";
+      ctx.fillText(state.calories, x + 135 * scale, currentY);
+      ctx.fillStyle = muted;
+      ctx.font = `500 ${Math.round(18 * scale)}px Inter, Arial, sans-serif`;
+      ctx.fillText("CALORIES", x + 270 * scale, currentY + 2 * scale);
+
+      currentY += 72 * scale;
+      drawLineIcon("arm", x + 82 * scale, currentY, 42 * scale, gold);
+      ctx.fillStyle = white;
+      ctx.font = `800 ${Math.round(51 * scale)}px Inter, Arial, sans-serif`;
+      ctx.fillText(state.protein, x + 135 * scale, currentY);
+      ctx.fillStyle = muted;
+      ctx.font = `500 ${Math.round(18 * scale)}px Inter, Arial, sans-serif`;
+      ctx.fillText("PROTEIN", x + 270 * scale, currentY + 2 * scale);
+
+      currentY += 55 * scale;
+      ctx.strokeStyle = "rgba(232,191,115,0.72)";
+      ctx.lineWidth = 1.1 * scale;
+      ctx.beginPath();
+      ctx.moveTo(x + 42 * scale, currentY);
+      ctx.lineTo(x + panelW - 42 * scale, currentY);
+      ctx.stroke();
+
+      const macroY = currentY + 66 * scale;
+      const columns = [
+        { icon: "wheat", value: state.carbs, label: "CARBS", x: x + panelW * 0.22 },
+        { icon: "drop", value: state.fat, label: "FAT", x: x + panelW * 0.5 },
+        { icon: "cube", value: state.fiber, label: "FIBER", x: x + panelW * 0.78 }
+      ];
+
+      ctx.textAlign = "center";
+      columns.forEach((macro) => {
+        drawLineIcon(macro.icon, macro.x, macroY - 39 * scale, 26 * scale, gold);
+        ctx.fillStyle = white;
+        ctx.font = `800 ${Math.round(34 * scale)}px Inter, Arial, sans-serif`;
+        ctx.fillText(macro.value, macro.x, macroY + 5 * scale);
+        ctx.fillStyle = muted;
+        ctx.font = `500 ${Math.round(17 * scale)}px Inter, Arial, sans-serif`;
+        ctx.fillText(macro.label, macro.x, macroY + 39 * scale);
+      });
+
+      ctx.strokeStyle = "rgba(255,255,255,0.44)";
+      ctx.lineWidth = 1 * scale;
+      [x + panelW * 0.36, x + panelW * 0.64].forEach((lineX) => {
+        ctx.beginPath();
+        ctx.moveTo(lineX, currentY + 23 * scale);
+        ctx.lineTo(lineX, currentY + 122 * scale);
+        ctx.stroke();
+      });
+
+      const footerLineY = y + panelH - 70 * scale;
+      ctx.strokeStyle = "rgba(232,191,115,0.72)";
+      ctx.beginPath();
+      ctx.moveTo(x + 42 * scale, footerLineY);
+      ctx.lineTo(x + panelW - 42 * scale, footerLineY);
+      ctx.stroke();
+
+      ctx.fillStyle = muted;
+      ctx.font = `600 ${Math.round(18 * scale)}px Inter, Arial, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.fillText(state.footer.toUpperCase(), cx, y + panelH - 35 * scale);
+      ctx.restore();
+    }
+
+    function render() {
+      syncStateFromInputs();
+      const isPortrait = state.format === "portrait";
+      canvas.width = 1080;
+      canvas.height = isPortrait ? 1350 : 1080;
+      sizeInfo.textContent = `${canvas.width} x ${canvas.height} px`;
+
+      drawImageCover();
+      drawOverlay();
+    }
+
+    function resetAll() {
+      state = { ...defaultState };
+      updateInputsFromState();
+      statusEl.textContent = "Werte wurden zurueckgesetzt.";
+      render();
+    }
+
+    function downloadPoster() {
+      render();
+      const link = document.createElement("a");
+      const cleanName = (state.fileName || "tdm-carousel-cover")
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9-]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "tdm-carousel-cover";
+      link.download = `${cleanName}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+      statusEl.textContent = `Exportiert: ${cleanName}.png`;
+    }
+
+    fields.imageUpload.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const nextImage = new Image();
+        nextImage.onload = () => {
+          image = nextImage;
+          statusEl.textContent = `Bild geladen: ${file.name}`;
+          render();
+        };
+        nextImage.onerror = () => {
+          statusEl.textContent = "Das Bild konnte nicht geladen werden.";
+        };
+        nextImage.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    Object.values(fields).forEach((field) => {
+      if (field === fields.imageUpload) return;
+      field.addEventListener("input", render);
+      field.addEventListener("change", render);
+    });
+
+    resetBtn.addEventListener("click", resetAll);
+    downloadBtn.addEventListener("click", downloadPoster);
+
+    updateInputsFromState();
+    render();
+  </script>
+</body>
+</html>
